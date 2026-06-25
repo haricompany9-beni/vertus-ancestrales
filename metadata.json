@@ -1,0 +1,6 @@
+{
+  "name": "Vertus Ancestrales",
+  "description": "Boutique e-commerce premium de cosmétiques naturels, consultations et blogs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
