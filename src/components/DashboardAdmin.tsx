@@ -285,7 +285,7 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
             <Truck size={15} />
             <span>Commandes Client ({orders.length})</span>
             {pendingOrdersCount > 0 && (
-              <span className="ml-auto bg-[#D64545] text-white text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">
+              <span className="ml-auto bg-[#D64545] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 {pendingOrdersCount}
               </span>
             )}
@@ -302,7 +302,7 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
             <Calendar size={15} />
             <span>Séances Monique ({bookings.length})</span>
             {pendingBookingsCount > 0 && (
-              <span className="ml-auto bg-amber-500 text-white text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold">
+              <span className="ml-auto bg-amber-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                 {pendingBookingsCount}
               </span>
             )}
@@ -599,7 +599,7 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
 
               <div className="flex flex-col gap-4">
                 {bookings.map((booking) => (
-                  <div key={booking.id} className="border border-[#E8DFC9]/30 bg-white p-4.5 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                  <div key={booking.id} className="border border-[#E8DFC9]/30 bg-white p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                       <span className="text-[10px] text-[#C8A96B] uppercase font-bold">{booking.consultationTitle}</span>
                       <h3 className="font-serif text-base font-semibold text-[#1F3B2F] mt-1">{booking.userName}</h3>
@@ -685,7 +685,7 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
               
               <div className="flex flex-col gap-4">
                 {testimonials.map((test) => (
-                  <div key={test.id} className="border border-[#E8DFC9]/35 bg-white p-4.5 rounded-lg flex flex-col gap-3">
+                  <div key={test.id} className="border border-[#E8DFC9]/35 bg-white p-4 rounded-lg flex flex-col gap-3">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
                         <span className="font-serif font-bold text-sm text-[#1F3B2F]">{test.name}</span>
@@ -724,7 +724,7 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
               
               <div className="flex flex-col gap-5">
                 {contacts.map((msg) => (
-                  <div key={msg.id} className="border border-[#E8DFC9]/30 bg-white p-4.5 rounded-lg flex flex-col gap-3">
+                  <div key={msg.id} className="border border-[#E8DFC9]/30 bg-white p-4 rounded-lg flex flex-col gap-3">
                     <div className="flex justify-between items-start">
                       <div>
                         <h4 className="font-bold text-xs text-[#1F3B2F]">{msg.name}</h4>
@@ -1008,7 +1008,7 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                 {newProdImages.length > 0 && (
                   <div className="flex flex-col gap-1.5 mt-1">
                     <p className="text-[10px] uppercase font-sans tracking-wider text-gray-500 font-bold">Galerie d'images ({newProdImages.length})</p>
-                    <div className="grid grid-cols-5 gap-2.5">
+                    <div className="grid grid-cols-3 sm:grid-cols-5 gap-2.5">
                       {newProdImages.map((imgSrc, idx) => {
                         const isPrimary = idx === 0;
                         return (

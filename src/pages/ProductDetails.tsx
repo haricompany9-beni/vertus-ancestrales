@@ -103,7 +103,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
         </button>
       </div>
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mt-2">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mt-2">
         
         {/* Product Gallery Stage Left */}
         <div className="lg:col-span-5 flex flex-col gap-4">
@@ -131,7 +131,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
           </div>
           
           {/* Multi-angle actual active selectors */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {extraImages.map((imgSrc, idx) => {
               const isActive = activeImage === imgSrc;
               return (

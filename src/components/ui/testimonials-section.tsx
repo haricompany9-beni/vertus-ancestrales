@@ -205,7 +205,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ test, isMobile = fals
     <div
       style={{ contentVisibility: 'auto' }}
       className={`bg-white rounded-2xl lg:rounded-3xl p-6 sm:p-8 border border-[#E8DFC9]/35 shadow-[0_4px_22px_rgba(31,59,47,0.015)] hover:shadow-[0_12px_45px_rgba(31,59,47,0.055)] flex flex-col justify-between transition-all duration-500 ease-out shrink-0 ${
-        isMobile ? 'w-[290px] h-[210px] p-5' : 'w-[350px] sm:w-[380px] lg:w-[410px] h-[220px] lg:h-[240px]'
+        isMobile ? 'w-[260px] h-[210px] p-5' : 'w-[350px] sm:w-[380px] lg:w-[410px] h-[220px] lg:h-[240px]'
       }`}
     >
       <div>

@@ -77,7 +77,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
                 LE TEMPLE INTUITIF
               </span>
               
-              <h1 className="font-serif text-[38px] sm:text-[54px] lg:text-[62px] text-[#1F3B2F] font-light leading-[1.08] tracking-tight text-left">
+              <h1 className="font-serif text-[28px] sm:text-[54px] lg:text-[62px] text-[#1F3B2F] font-light leading-[1.08] tracking-tight text-left">
                 Consultations <br />
                 <span className="text-[#1F3B2F] font-light">Holistiques & Guidance</span> <br />
                 <span className="text-[#C8A96B] italic font-serif">Médiumnique</span>
@@ -91,14 +91,14 @@ export const Consultations: React.FC<ConsultationsProps> = ({
               <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 w-full sm:w-auto">
                 <button 
                   onClick={() => setPage('booking')}
-                  className="w-full sm:w-auto bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-9 py-4.5 rounded-lg shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-9 py-4 rounded-lg shadow-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>RÉSERVER MAINTENANT</span>
                   <ArrowRight size={13} className="text-[#C8A96B]" />
                 </button>
                 <button 
                   onClick={() => handleChooseConsultation('générale')}
-                  className="w-full sm:w-auto bg-transparent border border-[#1F3B2F]/15 hover:border-[#1F3B2F]/40 hover:bg-white text-[#1F3B2F] text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-9 py-4.5 rounded-lg transition-all duration-300 cursor-pointer"
+                  className="w-full sm:w-auto bg-transparent border border-[#1F3B2F]/15 hover:border-[#1F3B2F]/40 hover:bg-white text-[#1F3B2F] text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-9 py-4 rounded-lg transition-all duration-300 cursor-pointer"
                 >
                   DÉCOUVRIR LES SÉANCES
                 </button>
@@ -145,7 +145,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1F3B2F]/25 via-transparent to-transparent z-0 pointer-events-none" />
                 
                 {/* Floating dark premium rating card */}
-                <div className="absolute bottom-6 right-6 bg-[#12241C] text-white p-4.5 rounded-2xl border border-[#C8A96B]/30 flex flex-col gap-1 shadow-2xl max-w-[170px] select-none text-left">
+                <div className="absolute bottom-6 right-6 bg-[#12241C] text-white p-4 rounded-2xl border border-[#C8A96B]/30 flex flex-col gap-1 shadow-2xl max-w-[170px] select-none text-left">
                   <div className="flex items-center gap-1.5 text-[#C8A96B]">
                     <Sparkles size={16} />
                     <span className="font-serif text-lg font-bold leading-noneTracking-wide">+500</span>
@@ -322,7 +322,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
               <div className="mt-10 pt-6 border-t border-white/10 w-full flex items-center justify-between gap-4">
                 <button 
                   onClick={() => handleChooseConsultation('générale')}
-                  className="w-full bg-transparent border border-[#C8A96B]/50 hover:bg-[#C8A96B] text-[#FAF8F3] hover:text-[#1F3B2F] text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase py-4.5 rounded-lg shadow transition-all duration-300 cursor-pointer text-center"
+                  className="w-full bg-transparent border border-[#C8A96B]/50 hover:bg-[#C8A96B] text-[#FAF8F3] hover:text-[#1F3B2F] text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase py-4 rounded-lg shadow transition-all duration-300 cursor-pointer text-center"
                 >
                   CHOISIR CETTE SÉANCE
                 </button>
@@ -394,7 +394,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
               <div className="mt-10 pt-6 border-t border-[#E8DFC9]/30 w-full flex items-center justify-between gap-4">
                 <button 
                   onClick={() => handleChooseConsultation('médiumnique')}
-                  className="w-full bg-[#C8A96B] hover:bg-[#b09257] text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase py-4.5 rounded-lg shadow-md transition-all duration-300 cursor-pointer text-center"
+                  className="w-full bg-[#C8A96B] hover:bg-[#b09257] text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase py-4 rounded-lg shadow-md transition-all duration-300 cursor-pointer text-center"
                 >
                   CHOISIR CETTE SÉANCE
                 </button>
@@ -430,7 +430,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
             {/* Step 1 */}
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
-                <span className="w-22 h-22 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
+                <span className="w-20 h-20 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
                   <CalendarIcon size={24} strokeWidth={1.5} />
                 </span>
                 <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#1F3B2F] border border-[#C8A96B]/30 text-white font-serif text-[11px] font-bold flex items-center justify-center">
@@ -446,7 +446,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
             {/* Step 2 */}
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
-                <span className="w-22 h-22 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
+                <span className="w-20 h-20 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
                   <CheckCircle size={24} strokeWidth={1.5} />
                 </span>
                 <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#1F3B2F] border border-[#C8A96B]/30 text-white font-serif text-[11px] font-bold flex items-center justify-center">
@@ -462,7 +462,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
             {/* Step 3 */}
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
-                <span className="w-22 h-22 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
+                <span className="w-20 h-20 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
                   <Camera size={24} strokeWidth={1.5} />
                 </span>
                 <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#1F3B2F] border border-[#C8A96B]/30 text-white font-serif text-[11px] font-bold flex items-center justify-center">
@@ -478,7 +478,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
             {/* Step 4 */}
             <div className="flex flex-col items-center gap-4 text-center">
               <div className="relative">
-                <span className="w-22 h-22 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
+                <span className="w-20 h-20 rounded-full bg-white border border-[#E8DFC9]/40 shadow flex items-center justify-center text-[#C8A96B]">
                   <FileText size={24} strokeWidth={1.5} />
                 </span>
                 <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#1F3B2F] border border-[#C8A96B]/30 text-white font-serif text-[11px] font-bold flex items-center justify-center">
@@ -544,7 +544,7 @@ export const Consultations: React.FC<ConsultationsProps> = ({
               Tout ce que vous devez savoir
             </h2>
             
-            <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden mt-4 border border-[#E8DFC9]/30">
+            <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden mt-4 border border-[#E8DFC9]/30">
               <img 
                 src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=800&auto=format&fit=crop"
                 alt="Sacred Lithotherapy and wellness"

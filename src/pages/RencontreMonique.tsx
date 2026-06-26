@@ -59,7 +59,7 @@ export const RencontreMonique: React.FC = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="bg-[#FAF8F3] p-4.5 rounded border border-[#E8DFC9]/40 text-center">
+          <div className="bg-[#FAF8F3] p-4 rounded border border-[#E8DFC9]/40 text-center">
             <p className="font-serif text-sm font-semibold text-[#1F3B2F]">Monique Morgat</p>
             <p className="text-[10px] text-[#C8A96B] uppercase font-sans tracking-wider mt-1">Cabinet Privé, Paris Vème</p>
           </div>
@@ -76,7 +76,7 @@ export const RencontreMonique: React.FC = () => {
           <span className="text-[10px] uppercase text-[#C8A96B] tracking-wider font-semibold">Lignée et chemin d'incarnation</span>
           <h2 className="font-serif text-2xl sm:text-3.5xl text-[#1F3B2F] font-semibold leading-tight">Canaliser le souffle guérisseur</h2>
           
-          <div className="text-xs leading-relaxed text-[#6B7280] flex flex-col gap-4.5">
+          <div className="text-xs leading-relaxed text-[#6B7280] flex flex-col gap-4">
             <p>
               Iniciée très tôt par sa grand-mère herboriste dans les hauts plateaux sauvages de l'Aubrac, Monique a développé dès son enfance une sensibilité intuitive peu commune, percevant les vibrations émergeant des cours d'eau, des minéraux d'arène et des feuillages. Après des études académiques complétées par plusieurs cycles cliniques en médecine naturelle et phytothérapie, elle décide d'unifier ces deux compétences.
             </p>
@@ -102,7 +102,7 @@ export const RencontreMonique: React.FC = () => {
                 }
               }
             }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4.5 pt-6 border-t border-[#E8DFC9]/20 mt-4"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#E8DFC9]/20 mt-4"
           >
             <motion.div 
               variants={{ hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0 } }}

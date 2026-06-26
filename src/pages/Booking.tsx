@@ -143,14 +143,14 @@ export const Booking: React.FC<BookingProps> = ({
       transition={{ duration: 0.6 }}
       className="bg-[#FAF8F3]/60 min-h-screen text-[#3B2F2F] antialiased py-12 px-4 sm:px-6 lg:px-8 mt-16"
     >
-      <div className="max-w-[1240px] mx-auto mb-6 flex items-center justify-between">
+      <div className="max-w-[1240px] mx-auto mb-6 flex flex-wrap items-center justify-between gap-2">
         <button 
           onClick={() => setPage('consultations')}
-          className="flex items-center gap-2 text-xs tracking-widest text-[#1F3B2F] hover:text-[#C8A96B] font-sans font-extrabold uppercase transition-colors cursor-pointer"
+          className="flex items-center gap-2 text-[10px] sm:text-xs tracking-widest text-[#1F3B2F] hover:text-[#C8A96B] font-sans font-extrabold uppercase transition-colors cursor-pointer"
         >
-          <ArrowLeft size={14} /> Retour de consultations
+          <ArrowLeft size={14} /> <span className="hidden sm:inline">Retour de consultations</span><span className="sm:hidden">Retour</span>
         </button>
-        <span className="font-mono text-[9px] text-[#C8A96B] tracking-[0.2em] uppercase">Réseau d'Éveil Sacré Monique Morgat</span>
+        <span className="font-mono text-[8px] sm:text-[9px] text-[#C8A96B] tracking-[0.2em] uppercase hidden sm:inline">Réseau d'Éveil Sacré Monique Morgat</span>
       </div>
 
       {bookingSuccess && successBookingData ? (
@@ -176,7 +176,7 @@ export const Booking: React.FC<BookingProps> = ({
           <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
             <button 
               onClick={() => setPage('dashboard_client')}
-              className="bg-[#C8A96B] hover:bg-[#b09257] text-[#1F3B2F] text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-8 py-4.5 rounded-lg shadow-md transition-all cursor-pointer hover:text-white"
+              className="bg-[#C8A96B] hover:bg-[#b09257] text-[#1F3B2F] text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-8 py-4 rounded-lg shadow-md transition-all cursor-pointer hover:text-white"
             >
               ACCÉDER À MON CALENDRIER
             </button>
@@ -187,7 +187,7 @@ export const Booking: React.FC<BookingProps> = ({
                 setActiveStep(1);
                 setClientNotes('');
               }}
-              className="border border-white/20 bg-white/5 text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-8 py-4.5 rounded-lg transition-all cursor-pointer hover:bg-white/10"
+              className="border border-white/20 bg-white/5 text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-8 py-4 rounded-lg transition-all cursor-pointer hover:bg-white/10"
             >
               RÉSERVER UNE AUTRE SÉANCE
             </button>
@@ -253,7 +253,27 @@ export const Booking: React.FC<BookingProps> = ({
             
             {/* Stepper Horizontal Header */}
             <div>
-              <div className="grid grid-cols-4 border-b border-gray-100 pb-4 text-center select-none">
+              {/* Mobile compact stepper */}
+              <div className="sm:hidden border-b border-gray-100 pb-3 text-center select-none">
+                <span className="text-[10px] font-sans tracking-wider font-extrabold uppercase text-[#1F3B2F]">
+                  Étape {activeStep}/4
+                </span>
+                <div className="flex justify-center gap-1.5 mt-2">
+                  {[1,2,3,4].map(step => (
+                    <div 
+                      key={step}
+                      onClick={() => {
+                        if (step === 1 || (step === 2 && selectedDate) || (step === 3 && selectedTimeSlot) || (step === 4 && clientNotes)) setActiveStep(step);
+                      }}
+                      className={`w-8 h-1 rounded-full transition-all cursor-pointer ${
+                        step === activeStep ? 'bg-[#1F3B2F]' : step < activeStep ? 'bg-[#C8A96B]' : 'bg-gray-200'
+                      }`} 
+                    />
+                  ))}
+                </div>
+              </div>
+              {/* Desktop full stepper */}
+              <div className="hidden sm:grid grid-cols-4 border-b border-gray-100 pb-4 text-center select-none">
                 <span 
                   onClick={() => setActiveStep(1)}
                   className={`text-[9.5px] font-sans tracking-wider font-extrabold uppercase pb-4 cursor-pointer transition-all border-b-2 ${
@@ -427,7 +447,7 @@ export const Booking: React.FC<BookingProps> = ({
                             key={time}
                             type="button"
                             onClick={() => setSelectedTimeSlot(time)}
-                            className={`px-6 py-4.5 rounded-xl border text-sm transition-all font-mono tracking-wide cursor-pointer flex flex-col items-center gap-1.5 ${
+                            className={`px-6 py-4 rounded-xl border text-sm transition-all font-mono tracking-wide cursor-pointer flex flex-col items-center gap-1.5 ${
                               isSelected
                                 ? 'bg-[#1F3B2F] text-white border-[#C8A96B] shadow-md font-extrabold'
                                 : 'border-[#E8DFC9] text-gray-600 bg-stone-50 hover:border-[#1F3B2F] hover:bg-white'
@@ -590,7 +610,7 @@ export const Booking: React.FC<BookingProps> = ({
                           <span className="text-[10px] text-[#556B2F] font-bold flex items-center gap-1 bg-[#1F3B2F]/5 px-2 py-0.5 rounded-full"><Lock size={9} /> Crypté SSL</span>
                         </div>
 
-                        <div className="flex flex-col gap-4.5 mt-2">
+                        <div className="flex flex-col gap-4 mt-2">
                           <div className="flex flex-col gap-1.5 text-left">
                             <label className="text-[9px] uppercase font-bold text-gray-500">Nom du titulaire de carte</label>
                             <input
@@ -675,7 +695,7 @@ export const Booking: React.FC<BookingProps> = ({
 
                         <button
                           type="submit"
-                          className="w-full bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[11px] font-sans font-extrabold tracking-[0.2em] uppercase px-6 py-4.5 rounded-lg shadow-md transition-colors cursor-pointer text-center mt-2.5"
+                          className="w-full bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[11px] font-sans font-extrabold tracking-[0.2em] uppercase px-6 py-4 rounded-lg shadow-md transition-colors cursor-pointer text-center mt-2.5"
                         >
                           CONFIRMER ET RÉGLER ({activeConsultation.price} €)
                         </button>
@@ -706,7 +726,7 @@ export const Booking: React.FC<BookingProps> = ({
                 <button
                   type="button"
                   onClick={handleNextStep}
-                  className="bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[11px] font-sans font-extrabold tracking-[0.2em] uppercase px-10 py-4.5 rounded-lg shadow-md transition-colors cursor-pointer flex items-center gap-2"
+                  className="bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[11px] font-sans font-extrabold tracking-[0.2em] uppercase px-10 py-4 rounded-lg shadow-md transition-colors cursor-pointer flex items-center gap-2"
                 >
                   <span>{activeStep === 1 ? 'VOIR LES DISPONIBILITÉS' : activeStep === 2 ? 'SAISIR MON INTENTION' : 'COORDONNÉES & PAIEMENT'}</span>
                   <ArrowRight size={13} className="text-[#C8A96B]" />

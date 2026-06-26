@@ -204,7 +204,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
           1. IMMERSIVE & LUXURIOUS HERO SECTION
           ======================================================== */}
       <section 
-        className="relative bg-[#1F3B2F] bg-cover bg-center md:bg-right pt-24 pb-20 lg:pt-32 lg:pb-[140px] border-b border-[#C8A96B]/25 text-white overflow-hidden flex items-center min-h-[580px] lg:min-h-[740px]"
+        className="relative bg-[#1F3B2F] bg-cover bg-center md:bg-right pt-16 pb-16 lg:pt-32 lg:pb-[140px] border-b border-[#C8A96B]/25 text-white overflow-hidden flex items-center min-h-[400px] lg:min-h-[740px]"
         style={{ backgroundImage: `url(${heroBoutique})` }}
       >
         {/* Subtle gradient overlay to provide text readability while preserving the photo on the right */}
@@ -224,7 +224,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                 <span className="text-[11px] font-sans tracking-[0.25em] text-[#C8A96B] font-extrabold uppercase">L'OFFICINE DES SIMPLES</span>
               </div>
 
-              <h1 className="font-serif text-[42px] sm:text-[56px] lg:text-[68px] text-white font-light leading-[1.1] tracking-normal mt-1">
+              <h1 className="font-serif text-[32px] sm:text-[56px] lg:text-[68px] text-white font-light leading-[1.1] tracking-normal mt-1">
                 Herboristerie & <br />
                 <span className="text-[#C8A96B] italic font-serif">Soins Ancestraux</span>
               </h1>
@@ -233,10 +233,10 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                 Chaque soin est conçu comme un rituel sacré. Nos formulations naturelles et pures sont pensées pour révéler l'harmonie et l'équilibre profond entre votre corps, votre esprit et votre énergie.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4.5 mt-7 w-full sm:w-auto">
+              <div className="flex flex-wrap items-center gap-4 mt-7 w-full sm:w-auto">
                 <button 
                   onClick={scrollToProducts}
-                  className="w-full sm:w-auto bg-[#13271F] hover:bg-[#1a352b] border border-[#13271F] text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-9 py-4.5 rounded-lg shadow-md transition-all duration-300 cursor-pointer"
+                  className="w-full sm:w-auto bg-[#13271F] hover:bg-[#1a352b] border border-[#13271F] text-white text-[11px] font-sans tracking-[0.2em] font-extrabold uppercase px-9 py-4 rounded-lg shadow-md transition-all duration-300 cursor-pointer"
                 >
                   EXPLORER LES SOINS
                 </button>
@@ -304,7 +304,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
             <SlidersHorizontal size={13} />
             <span>Filtrer & Trier</span>
             {activeFiltersCount > 0 && (
-              <span className="bg-[#C8A96B] w-4.5 h-4.5 rounded-full text-[9px] flex items-center justify-center font-bold text-[#1F3B2F]">
+              <span className="bg-[#C8A96B] w-4 h-4 rounded-full text-[9px] flex items-center justify-center font-bold text-[#1F3B2F]">
                 {activeFiltersCount}
               </span>
             )}
@@ -567,7 +567,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                 </div>
               ) : (
                 <div>
-                  <div className={viewType === 'list' ? "flex flex-col gap-6 sm:gap-8" : "grid grid-cols-2 lg:grid-cols-3 gap-4.5 sm:gap-7 lg:gap-8"}>
+                  <div className={viewType === 'list' ? "flex flex-col gap-6 sm:gap-8" : "grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-7 lg:gap-8"}>
                     {paginatedProducts.map((product) => (
                       <ProductCard
                         key={product.id}
@@ -584,7 +584,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
 
             {/* PAGINATION LAYOUT CONTROLS */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-3 mt-14 py-4.5 border-t border-[#E8DFC9]/30">
+              <div className="flex items-center justify-center gap-3 mt-14 py-4 border-t border-[#E8DFC9]/30">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
@@ -632,8 +632,8 @@ export const Boutique: React.FC<BoutiqueProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 rounded-[28px] overflow-hidden border border-[#E8DFC9]/40 shadow-xs">
             
             {/* Column 1: Des plantes choisies avec intention */}
-            <div className="bg-[#FAF8F3]/60 p-8 sm:p-10 lg:p-12 flex items-start gap-4 sm:gap-5.5 border-b md:border-b-0 md:border-r border-[#E8DFC9]/35">
-              <div className="w-13 h-13 sm:w-15 sm:h-15 shrink-0 flex items-center justify-center text-[#C8A96B] bg-[#FAF8F3] rounded-full border border-[#C8A96B]/30 shadow-3xs">
+            <div className="bg-[#FAF8F3]/60 p-8 sm:p-10 lg:p-12 flex items-start gap-4 sm:gap-5 border-b md:border-b-0 md:border-r border-[#E8DFC9]/35">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center text-[#C8A96B] bg-[#FAF8F3] rounded-full border border-[#C8A96B]/30 shadow-3xs">
                 <svg className="w-8 h-8 text-[#C8A96B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                   <circle cx="12" cy="12" r="9" />
                   <path d="M12 16c0-2.5 1.5-4 4-5-2-2.5-4.5-2.5-6.5-1C7.5 11.5 8.5 14 12 16" strokeLinecap="round" strokeLinejoin="round" />
@@ -658,8 +658,8 @@ export const Boutique: React.FC<BoutiqueProps> = ({
             </div>
 
             {/* Column 2: Livraison internationale DHL */}
-            <div className="bg-[#1F3B2F] p-8 sm:p-10 lg:p-12 flex items-start gap-4 sm:gap-5.5 text-white border-b md:border-b-0 md:border-r border-[#E8DFC9]/15">
-              <div className="w-13 h-13 sm:w-15 sm:h-15 shrink-0 flex items-center justify-center text-[#C8A96B] bg-[#12241C] rounded-full border border-[#C8A96B]/20">
+            <div className="bg-[#1F3B2F] p-8 sm:p-10 lg:p-12 flex items-start gap-4 sm:gap-5 text-white border-b md:border-b-0 md:border-r border-[#E8DFC9]/15">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center text-[#C8A96B] bg-[#12241C] rounded-full border border-[#C8A96B]/20">
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="9" />
                   <ellipse cx="12" cy="12" rx="3.5" ry="9" />
@@ -686,8 +686,8 @@ export const Boutique: React.FC<BoutiqueProps> = ({
             </div>
 
             {/* Column 3: Formulations éthiques & pures */}
-            <div className="bg-[#FAF8F3]/60 p-8 sm:p-10 lg:p-12 flex items-start gap-4 sm:gap-5.5">
-              <div className="w-13 h-13 sm:w-15 sm:h-15 shrink-0 flex items-center justify-center text-[#C8A96B] bg-[#FAF8F3] rounded-full border border-[#E8DFC9]/30 shadow-3xs">
+            <div className="bg-[#FAF8F3]/60 p-8 sm:p-10 lg:p-12 flex items-start gap-4 sm:gap-5">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center text-[#C8A96B] bg-[#FAF8F3] rounded-full border border-[#E8DFC9]/30 shadow-3xs">
                 <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M6 12a5 5 0 0 0 12 0" />
                   <path d="M4 12h16" />
@@ -775,7 +775,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                     MATIN • INTENTION
                   </span>
                 </div>
-                <div className="p-6.5 sm:p-7">
+                <div className="p-6 sm:p-7">
                   <span className="text-[9px] tracking-[0.2em] text-[#C8A96B] uppercase font-bold font-sans">
                     ÉNERGIE • CLARTÉ • RENAISSANCE
                   </span>
@@ -797,7 +797,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                 </div>
                 <button 
                   onClick={(e) => handleAddRitual(e, 'eveil')}
-                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] hover:text-[#FAF8F3] text-[#FAF8F3] w-10.5 h-10.5 rounded-full shadow-sm transition-all flex items-center justify-center cursor-pointer hover:shadow-md"
+                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] hover:text-[#FAF8F3] text-[#FAF8F3] w-10 h-10 rounded-full shadow-sm transition-all flex items-center justify-center cursor-pointer hover:shadow-md"
                   title="Acquérir ce coffret rituel"
                 >
                   <ShoppingBag size={14} />
@@ -823,7 +823,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                     CRÉPUSCULE • NETTOYAGE
                   </span>
                 </div>
-                <div className="p-6.5 sm:p-7">
+                <div className="p-6 sm:p-7">
                   <span className="text-[9px] tracking-[0.2em] text-[#C8A96B] uppercase font-bold font-sans">
                     DÉTOX • PURIFICATION • HARMONIE
                   </span>
@@ -845,7 +845,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                 </div>
                 <button 
                   onClick={(e) => handleAddRitual(e, 'purif')}
-                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] hover:text-[#FAF8F3] text-[#FAF8F3] w-10.5 h-10.5 rounded-full shadow-sm transition-all flex items-center justify-center cursor-pointer hover:shadow-md"
+                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] hover:text-[#FAF8F3] text-[#FAF8F3] w-10 h-10 rounded-full shadow-sm transition-all flex items-center justify-center cursor-pointer hover:shadow-md"
                   title="Acquérir ce coffret rituel"
                 >
                   <ShoppingBag size={14} />
@@ -871,7 +871,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                     BOUCLIER • HARMONIE
                   </span>
                 </div>
-                <div className="p-6.5 sm:p-7">
+                <div className="p-6 sm:p-7">
                   <span className="text-[9px] tracking-[0.2em] text-[#C8A96B] uppercase font-bold font-sans">
                     ANCRAGE • SÉCURITÉ • FORCE
                   </span>
@@ -893,7 +893,7 @@ export const Boutique: React.FC<BoutiqueProps> = ({
                 </div>
                 <button 
                   onClick={(e) => handleAddRitual(e, 'protect')}
-                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] hover:text-[#FAF8F3] text-[#FAF8F3] w-10.5 h-10.5 rounded-full shadow-sm transition-all flex items-center justify-center cursor-pointer"
+                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] hover:text-[#FAF8F3] text-[#FAF8F3] w-10 h-10 rounded-full shadow-sm transition-all flex items-center justify-center cursor-pointer"
                   title="Acquérir ce coffret rituel"
                 >
                   <ShoppingBag size={14} />

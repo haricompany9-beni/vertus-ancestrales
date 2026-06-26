@@ -268,7 +268,7 @@ export const Home: React.FC<HomeProps> = ({
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHoveringHero(true)}
         onMouseLeave={() => setIsHoveringHero(false)}
-        className="relative h-[480px] sm:h-[580px] lg:h-[660px] flex items-center bg-[#12241C] border-b border-[#C8A96B]/15 overflow-hidden md:cursor-none"
+        className="relative h-[400px] sm:h-[580px] lg:h-[660px] flex items-center bg-[#12241C] border-b border-[#C8A96B]/15 overflow-hidden md:cursor-none"
       >
         {/* Premium Mouse-Tracking Cursor Indicator on Hero */}
         {isHoveringHero && (
@@ -328,7 +328,7 @@ export const Home: React.FC<HomeProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-[#12241C]/95 via-[#12241C]/75 to-[#12241C]/45 md:hidden z-1"></div>
         </div>
 
-        <div className="max-w-[1440px] mx-auto w-full px-6 sm:px-12 lg:px-20 relative z-10 py-12 sm:py-24 lg:py-32">
+        <div className="max-w-[1440px] mx-auto w-full px-6 sm:px-12 lg:px-20 relative z-10 py-8 sm:py-24 lg:py-32">
           <motion.div 
             key={heroImageIdx}
             initial={{ opacity: 0, y: 15 }}
@@ -361,20 +361,35 @@ export const Home: React.FC<HomeProps> = ({
 
         {/* Luxury Steps Indicators */}
         <div className="absolute bottom-6 right-8 sm:right-12 z-20 flex items-center gap-4">
-          {HERO_SLIDES_INFO.map((slide, idx) => (
-            <button
-              key={idx}
-              onMouseEnter={() => setIsHoveringInteractive(true)}
-              onMouseLeave={() => setIsHoveringInteractive(false)}
-              onClick={() => setHeroImageIdx(idx)}
-              className="flex flex-col items-start gap-1 cursor-pointer group text-left outline-none md:cursor-pointer"
-            >
-              <span className={`text-[8px] sm:text-[9px] tracking-[0.2em] font-sans font-semibold transition-colors ${heroImageIdx === idx ? 'text-[#C8A96B]' : 'text-white/40 group-hover:text-white/70'}`}>
-                0{idx + 1} {slide.title}
-              </span>
-              <div className={`h-[2px] transition-all duration-700 ${heroImageIdx === idx ? 'w-16 bg-[#C8A96B]' : 'w-4 bg-white/20 group-hover:bg-white/40'}`} />
-            </button>
-          ))}
+          {/* Mobile dots */}
+          <div className="flex sm:hidden items-center gap-2">
+            {HERO_SLIDES_INFO.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setHeroImageIdx(idx)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  heroImageIdx === idx ? 'bg-[#C8A96B] w-4' : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+          {/* Desktop labels */}
+          <div className="hidden sm:flex items-center gap-4">
+            {HERO_SLIDES_INFO.map((slide, idx) => (
+              <button
+                key={idx}
+                onMouseEnter={() => setIsHoveringInteractive(true)}
+                onMouseLeave={() => setIsHoveringInteractive(false)}
+                onClick={() => setHeroImageIdx(idx)}
+                className="flex flex-col items-start gap-1 cursor-pointer group text-left outline-none md:cursor-pointer"
+              >
+                <span className={`text-[8px] sm:text-[9px] tracking-[0.2em] font-sans font-semibold transition-colors ${heroImageIdx === idx ? 'text-[#C8A96B]' : 'text-white/40 group-hover:text-white/70'}`}>
+                  0{idx + 1} {slide.title}
+                </span>
+                <div className={`h-[2px] transition-all duration-700 ${heroImageIdx === idx ? 'w-16 bg-[#C8A96B]' : 'w-4 bg-white/20 group-hover:bg-white/40'}`} />
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -498,7 +513,7 @@ export const Home: React.FC<HomeProps> = ({
         <div className="absolute top-1/4 right-0 w-80 h-80 bg-[#C8A96B]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#1F3B2F]/4 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-16 lg:gap-24 items-center">
           
           {/* Brand Content Left */}
           <motion.div 
@@ -543,7 +558,7 @@ export const Home: React.FC<HomeProps> = ({
             {/* Luxury dynamic button links to our path story */}
             <button
               onClick={() => setPage('monique')}
-              className="group relative mt-4 bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[10.5px] tracking-[0.18em] uppercase font-bold px-9 py-4.5 rounded-[4px] shadow-sm hover:shadow-xl transition-all duration-300 flex items-center gap-3 cursor-pointer"
+              className="group relative mt-4 bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[10.5px] tracking-[0.18em] uppercase font-bold px-9 py-4 rounded-[4px] shadow-sm hover:shadow-xl transition-all duration-300 flex items-center gap-3 cursor-pointer"
             >
               <span>DÉCOUVRIR NOTRE HISTOIRE</span>
               <svg className="w-4 h-4 text-[#C8A96B] group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -574,7 +589,7 @@ export const Home: React.FC<HomeProps> = ({
               <div className="absolute inset-0 bg-gradient-to-t from-[#1F3B2F]/15 via-transparent to-transparent pointer-events-none" />
 
               {/* Floating Circular Premium Quality Badge */}
-              <div className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-md border border-[#C8A96B]/50 p-4.5 rounded-full shadow-lg flex flex-col items-center justify-center w-28 h-28 transform hover:rotate-12 transition-transform duration-700 ease-out select-none">
+              <div className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-md border border-[#C8A96B]/50 p-4 rounded-full shadow-lg flex flex-col items-center justify-center w-28 h-28 transform hover:rotate-12 transition-transform duration-700 ease-out select-none">
                 <svg className="w-5 h-5 text-[#C8A96B] mb-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                   <path d="M12 21c-1.8-2.5-4-5-4-8.5c0-2.5 1.8-4.5 4-7" />
                   <path d="M12 21c1.8-2.5 4-5 4-8.5c0-2.5-1.8-4.5-4-7" />
@@ -655,7 +670,7 @@ export const Home: React.FC<HomeProps> = ({
                   </div>
                 </div>
 
-                <div className="p-5.5 flex flex-col gap-2">
+                <div className="p-5 flex flex-col gap-2">
                   <div className="flex items-center gap-1.5 text-xs text-[#C8A96B]">
                     <span className="flex items-center gap-0.5">
                       {Array.from({ length: 5 }).map((_, i) => (
@@ -677,7 +692,7 @@ export const Home: React.FC<HomeProps> = ({
                 </div>
               </div>
 
-              <div className="px-5.5 py-4.5 border-t border-[#E8DFC9]/20 flex items-center justify-between">
+              <div className="px-5 py-4 border-t border-[#E8DFC9]/20 flex items-center justify-between">
                 <span className="font-serif text-sm font-bold text-[#1F3B2F]">
                   {product.price.toFixed(2)} €
                 </span>
@@ -767,7 +782,7 @@ export const Home: React.FC<HomeProps> = ({
 
             <button 
               onClick={() => setPage('monique')}
-              className="mt-8 bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[10.5px] tracking-[0.16em] uppercase font-bold px-8 py-4.5 rounded-[4px] transition-all duration-300 flex items-center gap-2.5 group cursor-pointer shadow-md"
+              className="mt-8 bg-[#1F3B2F] hover:bg-[#152a21] text-white text-[10.5px] tracking-[0.16em] uppercase font-bold px-8 py-4 rounded-[4px] transition-all duration-300 flex items-center gap-2.5 group cursor-pointer shadow-md"
             >
               <svg className="w-4 h-4 text-[#C8A96B] group-hover:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 21c-1.8-2.5-4-5-4-8.5c0-2.5 1.8-4.5 4-7" />
@@ -786,7 +801,7 @@ export const Home: React.FC<HomeProps> = ({
         whileInView={{ opacity: 1, scaleY: 1 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full bg-[#1F3B2F] h-[72px] md:h-[96px] overflow-hidden flex items-center select-none border-y-2 border-[#C8A96B] shadow-2xl relative z-20"
+        className="w-full bg-[#1F3B2F] h-[56px] md:h-[96px] overflow-hidden flex items-center select-none border-y-2 border-[#C8A96B] shadow-2xl relative z-20"
       >
         <div 
           className="flex whitespace-nowrap animate-scroll-left hover:[animation-play-state:paused] cursor-pointer"
@@ -846,7 +861,7 @@ export const Home: React.FC<HomeProps> = ({
               window.scrollTo({ top: y, behavior: 'smooth' });
             }
           }}
-          className="group relative bg-[#FAF8F3] hover:bg-[#1F3B2F] border border-[#1F3B2F]/80 hover:border-[#1F3B2F] text-[#1F3B2F] hover:text-white text-[11px] tracking-[0.18em] uppercase font-bold px-9 py-4.5 rounded-[4px] shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-3.5 cursor-pointer"
+          className="group relative bg-[#FAF8F3] hover:bg-[#1F3B2F] border border-[#1F3B2F]/80 hover:border-[#1F3B2F] text-[#1F3B2F] hover:text-white text-[11px] tracking-[0.18em] uppercase font-bold px-9 py-4 rounded-[4px] shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-3.5 cursor-pointer"
         >
           <span>VOIR PLUS DE TÉMOIGNAGES</span>
           <svg className="w-4 h-4 text-[#C8A96B]/90 transition-transform duration-300 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

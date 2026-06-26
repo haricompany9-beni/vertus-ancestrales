@@ -627,14 +627,14 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({
             <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
               <button
                 onClick={() => setPage && setPage('booking')}
-                className="bg-[#C8A96B] hover:bg-white text-[#163126] hover:text-black font-sans text-xs tracking-[0.2em] font-bold uppercase py-4.5 px-8 sm:px-10 rounded transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-black/20"
+                className="bg-[#C8A96B] hover:bg-white text-[#163126] hover:text-black font-sans text-xs tracking-[0.2em] font-bold uppercase py-4 px-8 sm:px-10 rounded transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-black/20"
               >
                 Réserver une consultation
               </button>
               
               <button
                 onClick={() => setPage && setPage('boutique')}
-                className="border border-[#C8A96B]/60 hover:border-white hover:bg-white/5 text-[#FCFAF7] font-sans text-xs tracking-[0.2em] font-bold uppercase py-4.5 px-8 sm:px-10 rounded transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]"
+                className="border border-[#C8A96B]/60 hover:border-white hover:bg-white/5 text-[#FCFAF7] font-sans text-xs tracking-[0.2em] font-bold uppercase py-4 px-8 sm:px-10 rounded transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Découvrir la boutique
               </button>

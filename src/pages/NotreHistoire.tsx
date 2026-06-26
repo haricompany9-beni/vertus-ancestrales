@@ -91,7 +91,7 @@ export const NotreHistoire: React.FC<NotreHistoireProps> = ({ setPage }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             onClick={() => setPage && setPage('boutique')}
-            className="bg-[#C8A96B] hover:bg-white text-[#1F3B2F] text-[11px] font-sans font-bold uppercase tracking-[0.25em] px-10 py-4.5 transition-all duration-300 cursor-pointer"
+            className="bg-[#C8A96B] hover:bg-white text-[#1F3B2F] text-[11px] font-sans font-bold uppercase tracking-[0.25em] px-10 py-4 transition-all duration-300 cursor-pointer"
           >
             DÉCOUVRIR NOS RITUELS
           </motion.button>
@@ -362,7 +362,7 @@ export const NotreHistoire: React.FC<NotreHistoireProps> = ({ setPage }) => {
                   </div>
                   <button 
                      onClick={() => setPage && setPage('monique')}
-                     className="bg-[#1F3B2F] hover:bg-[#C8A96B] text-white text-[11px] font-sans font-bold uppercase tracking-[0.22em] px-8 py-4.5 transition-all duration-300 self-start sm:self-auto cursor-pointer"
+                     className="bg-[#1F3B2F] hover:bg-[#C8A96B] text-white text-[11px] font-sans font-bold uppercase tracking-[0.22em] px-8 py-4 transition-all duration-300 self-start sm:self-auto cursor-pointer"
                   >
                      RENCONTRER MONIQUE
                   </button>
@@ -512,7 +512,7 @@ export const NotreHistoire: React.FC<NotreHistoireProps> = ({ setPage }) => {
                 
                 <button 
                   onClick={() => setPage && setPage('boutique')}
-                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] text-white text-[11px] font-sans font-bold uppercase tracking-[0.25em] px-10 py-4.5 transition-all duration-300 cursor-pointer"
+                  className="bg-[#1F3B2F] hover:bg-[#C8A96B] text-white text-[11px] font-sans font-bold uppercase tracking-[0.25em] px-10 py-4 transition-all duration-300 cursor-pointer"
                 >
                   EXPLORER LA BOUTIQUE
                 </button>

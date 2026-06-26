@@ -83,26 +83,30 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 border-b ${isScrolled ? 'bg-[#1F3B2F] border-[#C8A96B]/20 shadow-lg shadow-black/15' : 'bg-[#FAF8F3]/95 backdrop-blur-md border-[#E8DFC9]/40'}`}>
       {/* Top Banner */}
-      <div className={`bg-[#12241C] text-[#FAF8F3]/90 text-[10px] sm:text-[11px] leading-none py-3 px-4 text-center tracking-[0.2em] font-sans uppercase font-medium border-b border-[#FAF8F3]/5 transition-all duration-300 h-auto ${isScrolled ? 'max-h-0 py-0 opacity-0 overflow-hidden border-none' : 'max-h-20 opacity-100'}`}>
+      <div className={`bg-[#12241C] text-[#FAF8F3]/90 text-[10px] sm:text-[11px] leading-none py-2 sm:py-3 px-4 text-center tracking-[0.2em] font-sans uppercase font-medium border-b border-[#FAF8F3]/5 transition-all duration-300 h-auto ${isScrolled ? 'max-h-0 py-0 opacity-0 overflow-hidden border-none' : 'max-h-20 opacity-100'}`}>
         <span className="text-[#C8A96B] font-extrabold mr-2">✦</span>
-        LIVRAISON OFFERTE INTERNATIONALE VIA DHL • PAIEMENT SÉCURISÉ STRIPE • CONSULTATION EN LIGNE DISPONIBLE
+        <span className="hidden sm:inline">LIVRAISON OFFERTE INTERNATIONALE VIA DHL • PAIEMENT SÉCURISÉ STRIPE • CONSULTATION EN LIGNE DISPONIBLE</span>
+        <span className="sm:hidden">LIVRAISON OFFERTE • PAIEMENT SÉCURISÉ</span>
         <span className="text-[#C8A96B] font-extrabold ml-2">✦</span>
       </div>
 
-      <div className={`max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between transition-all duration-300 relative ${isScrolled ? 'h-14 sm:h-16' : 'h-20 sm:h-24'}`}>
-        {/* Mobile controls: Hamburger on the left (matches mobile capture) */}
+      <div className={`max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center transition-all duration-300 relative ${isScrolled ? 'h-14 sm:h-16' : 'h-20 sm:h-24'}`}>
+        {/* Mobile controls: Hamburger on the left */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`lg:hidden p-2 focus:outline-none cursor-pointer order-1 z-10 transition-colors ${isScrolled ? 'text-[#FAF8F3] hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
+          className={`lg:hidden p-2 focus:outline-none cursor-pointer z-10 shrink-0 transition-colors ${isScrolled ? 'text-[#FAF8F3] hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={22} className="stroke-[1.75]" /> : <Menu size={22} className="stroke-[1.75]" />}
         </button>
 
-        {/* Logo Container (Left-aligned on desktop, beautifully centered on mobile to match capture) */}
+        {/* Spacer left for mobile to keep logo centered */}
+        <div className="lg:hidden w-10 shrink-0" />
+
+        {/* Logo Container (Left-aligned on desktop, centered on mobile) */}
         <button 
           onClick={() => setPage('home')} 
-          className="flex items-center gap-2.5 sm:gap-3 group text-left cursor-pointer focus:outline-none order-2 py-1 mx-auto lg:mx-0 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0"
+          className="flex items-center gap-2 sm:gap-3 group text-left cursor-pointer focus:outline-none py-1 mx-auto lg:mx-0"
         >
           <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full border border-[#C8A96B] overflow-hidden flex items-center justify-center bg-[#1F3B2F] group-hover:border-[#C8A96B] transition-all duration-300 shadow shrink-0">
             <img src={logoImg} alt="Vertus Ancestrales Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
@@ -118,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Navigation Desktop Center */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 order-3">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0">
           {navItems.map((item) => {
             const isActive = currentPage === item.id || (item.id === 'blog' && currentPage === 'blog_details') || (item.id === 'testimonials' && currentPage === 'home');
             return (
@@ -142,12 +146,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Controls Right (Combines Search, Dashboard, Cart, and Booking CTA) */}
-        <div className="flex items-center gap-1 sm:gap-3 lg:gap-4 order-4 ml-auto lg:ml-0 z-10">
+        {/* Controls Right */}
+        <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
           {/* Search Button */}
           <button 
             onClick={() => setShowSearchModal(true)}
-            className={`p-2 transition-colors cursor-pointer ${isScrolled ? 'text-white hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
+            className={`p-1.5 sm:p-2 transition-colors cursor-pointer ${isScrolled ? 'text-white hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
             title="Rechercher"
           >
             <Search size={18} className="stroke-[1.75]" />
@@ -155,20 +159,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* User Sign In / Profile Panel */}
           {currentUser ? (
-            <div className={`relative hidden sm:flex items-center gap-2 border-l pl-3 transition-colors ${isScrolled ? 'border-[#FAF8F3]/10' : 'border-[#E8DFC9]/40'}`}>
+            <div className={`relative hidden sm:flex items-center gap-1.5 border-l pl-2 transition-colors ${isScrolled ? 'border-[#FAF8F3]/10' : 'border-[#E8DFC9]/40'}`}>
               <button
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                className="flex items-center gap-2 hover:opacity-85 transition-opacity cursor-pointer focus:outline-none"
+                className="flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer focus:outline-none"
                 title="Profil"
               >
-                <div className="w-8 h-8 rounded-full bg-[#C8A96B] text-[#1F3B2F] flex items-center justify-center font-sans font-bold text-xs border border-white/10 shadow-sm">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#C8A96B] text-[#1F3B2F] flex items-center justify-center font-sans font-bold text-xs border border-white/10 shadow-sm">
                   {currentUser.firstName[0]}{currentUser.lastName[0]}
                 </div>
               </button>
 
               {isProfileDropdownOpen && (
                 <>
-                  {/* Invisible backdrop to clean up dropdown selection safely */}
                   <div 
                     className="fixed inset-0 z-35 cursor-default" 
                     onClick={() => setIsProfileDropdownOpen(false)}
@@ -209,30 +212,30 @@ export const Navbar: React.FC<NavbarProps> = ({
           ) : (
             <button 
               onClick={() => setPage('login')}
-              className={`hidden sm:flex transition-colors p-2 cursor-pointer ${isScrolled ? 'text-white hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
+              className={`hidden sm:flex transition-colors p-1.5 sm:p-2 cursor-pointer ${isScrolled ? 'text-white hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
               title="Se connecter"
             >
               <UserIcon size={18} className="stroke-[1.75]" />
             </button>
           )}
 
-          {/* Shopping Bag Button (Pristine transparent design matching general design style) */}
+          {/* Shopping Bag Button */}
           <button 
             onClick={() => setIsCartOpen(true)}
-            className={`relative p-2 transition-all cursor-pointer ${isScrolled ? 'text-white hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
+            className={`relative p-1.5 sm:p-2 transition-all cursor-pointer ${isScrolled ? 'text-white hover:text-[#C8A96B]' : 'text-[#1F3B2F] hover:text-[#C8A96B]'}`}
           >
             <ShoppingBag size={18} className="stroke-[1.75]" />
             {cartCount > 0 && (
-              <span className={`absolute -top-1 -right-1 text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold border transition-colors ${isScrolled ? 'bg-[#C8A96B] text-[#1F3B2F] border-[#1F3B2F]' : 'bg-[#1F3B2F] text-[#C8A96B] border-[#FAF8F3]'}`}>
+              <span className={`absolute -top-1 -right-1 text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold border transition-colors ${isScrolled ? 'bg-[#C8A96B] text-[#1F3B2F] border-[#1F3B2F]' : 'bg-[#1F3B2F] text-[#C8A96B] border-[#FAF8F3]'}`}>
                 {cartCount}
               </span>
             )}
           </button>
 
-          {/* Booking CTA Button (Desktop only) */}
+          {/* Booking CTA Button (Desktop large only) */}
           <button
             onClick={() => setPage('consultations')}
-            className={`hidden md:block text-[10px] tracking-[0.2em] uppercase font-bold border border-transparent px-4 py-2.5 rounded transition-all duration-300 cursor-pointer ${isScrolled ? 'bg-[#C8A96B] hover:bg-white text-[#1F3B2F] shadow-md shadow-black/10' : 'bg-[#C8A96B] hover:bg-[#1F3B2F] text-[#1F3B2F] hover:text-white shadow shadow-[#C8A96B]/15'}`}
+            className={`hidden lg:block text-[10px] tracking-[0.2em] uppercase font-bold border border-transparent px-3 py-2 rounded transition-all duration-300 cursor-pointer ${isScrolled ? 'bg-[#C8A96B] hover:bg-white text-[#1F3B2F] shadow-md shadow-black/10' : 'bg-[#C8A96B] hover:bg-[#1F3B2F] text-[#1F3B2F] hover:text-white shadow shadow-[#C8A96B]/15'}`}
           >
             Consultation
           </button>
@@ -241,7 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Navigation Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-[#FAF8F3] border-t border-[#E8DFC9]/40 py-6 px-6 absolute top-full left-0 w-full shadow-lg flex flex-col gap-5 animate-fade-in z-50">
+        <div className="lg:hidden bg-[#FAF8F3] border-t border-[#E8DFC9]/40 py-6 px-6 absolute top-full left-0 w-full shadow-lg flex flex-col gap-5 animate-fade-in z-50 max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="flex flex-col gap-4">
             {navItems.map((item) => {
               const isActive = currentPage === item.id || (item.id === 'testimonials' && currentPage === 'home');

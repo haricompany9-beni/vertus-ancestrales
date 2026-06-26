@@ -69,7 +69,7 @@ export const Blog: React.FC<BlogProps> = ({ articles, setPage }) => {
       <section className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-12 flex flex-col gap-8">
         
         {/* Horizontal filters and Search */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4.5 rounded-lg border border-[#E8DFC9]/35 shadow-sm">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-lg border border-[#E8DFC9]/35 shadow-sm">
           {/* Category Tabs */}
           <div className="flex flex-wrap gap-2.5">
             {(['Tous', 'Ésotérisme', 'Ritualité', 'Bien-être'] as const).map((cat) => {

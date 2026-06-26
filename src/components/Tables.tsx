@@ -17,7 +17,7 @@ export const Table: React.FC<TablesProps> = ({ headers, children }) => {
         <thead className="bg-[#FAF8F3] border-b border-[#E8DFC9]/35 text-[#1F3B2F] font-bold uppercase tracking-wider text-[10px]">
           <tr>
             {headers.map((header, idx) => (
-              <th key={idx} className="p-4.5 font-semibold">
+              <th key={idx} className="p-4 font-semibold">
                 {header}
               </th>
             ))}
