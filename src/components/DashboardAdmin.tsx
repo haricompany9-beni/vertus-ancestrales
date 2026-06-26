@@ -101,7 +101,10 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
   
   // Product Form State
   const [newProdName, setNewProdName] = useState('');
-  const [newProdCategory, setNewProdCategory] = useState<'Visage' | 'Corps' | 'Rituels'>('Visage');
+  const [newProdCategory, setNewProdCategory] = useState<string>('Visage');
+  const [categories, setCategories] = useState<string[]>(['Visage', 'Corps', 'Rituels']);
+  const [showCustomCategory, setShowCustomCategory] = useState(false);
+  const [newCustomCategory, setNewCustomCategory] = useState('');
   const [newProdSubtitle, setNewProdSubtitle] = useState('');
   const [newProdDesc, setNewProdDesc] = useState('');
   const [newProdDetailedDesc, setNewProdDetailedDesc] = useState('');
@@ -143,6 +146,8 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     setNewProdImages(prod.images && prod.images.length > 0 ? prod.images : [prod.image].filter(Boolean));
     setNewProdVariants(prod.variants && prod.variants.length > 0 ? prod.variants : ['50ml', '100ml', '250ml']);
     setCustomVariantInput('');
+    setShowCustomCategory(false);
+    setNewCustomCategory('');
     setShowProductModal(true);
   };
 
@@ -159,6 +164,8 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
     setNewProdImages(['https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=600&auto=format&fit=crop']);
     setNewProdVariants(['50ml', '100ml', '250ml']);
     setCustomVariantInput('');
+    setShowCustomCategory(false);
+    setNewCustomCategory('');
     setShowProductModal(true);
   };
 
@@ -832,15 +839,65 @@ export const DashboardAdmin: React.FC<DashboardAdminProps> = ({
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="font-semibold text-gray-700">Catégorie</label>
-                  <select
-                    className="border border-[#E8DFC9] px-3 py-2 rounded bg-white focus:outline-none"
-                    value={newProdCategory}
-                    onChange={(e) => setNewProdCategory(e.target.value as any)}
-                  >
-                    <option value="Visage">Visage</option>
-                    <option value="Corps">Corps</option>
-                    <option value="Rituels">Rituels</option>
-                  </select>
+                  {!showCustomCategory ? (
+                    <div className="flex gap-2">
+                      <select
+                        className="flex-1 border border-[#E8DFC9] px-3 py-2 rounded bg-white focus:outline-none"
+                        value={categories.includes(newProdCategory) ? newProdCategory : ''}
+                        onChange={(e) => {
+                          if (e.target.value === '__custom__') {
+                            setShowCustomCategory(true);
+                            setNewCustomCategory('');
+                          } else {
+                            setNewProdCategory(e.target.value);
+                          }
+                        }}
+                      >
+                        {categories.map((cat) => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                        <option value="__custom__">Autre (créer)...</option>
+                      </select>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        className="flex-1 border border-[#E8DFC9] px-3 py-2 rounded focus:outline-none focus:border-[#C8A96B]"
+                        placeholder="Nouvelle catégorie..."
+                        value={newCustomCategory}
+                        onChange={(e) => setNewCustomCategory(e.target.value)}
+                        autoFocus
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const trimmed = newCustomCategory.trim();
+                          if (trimmed && !categories.includes(trimmed)) {
+                            setCategories([...categories, trimmed]);
+                          }
+                          if (trimmed) {
+                            setNewProdCategory(trimmed);
+                          }
+                          setShowCustomCategory(false);
+                          setNewCustomCategory('');
+                        }}
+                        className="bg-[#1F3B2F] hover:bg-[#556B2F] text-[#FAF8F3] font-serif text-xs px-4 py-2 rounded cursor-pointer transition-colors"
+                      >
+                        Valider
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowCustomCategory(false);
+                          setNewCustomCategory('');
+                        }}
+                        className="border border-gray-300 hover:bg-gray-50 text-gray-600 px-3 py-2 rounded transition-all text-xs"
+                      >
+                        Annuler
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 

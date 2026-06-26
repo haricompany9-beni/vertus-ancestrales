@@ -6,7 +6,7 @@
 export interface Product {
   id: string;
   name: string;
-  category: 'Visage' | 'Corps' | 'Rituels';
+  category: string;
   subTitle: string;
   description: string;
   detailedDescription: string;
