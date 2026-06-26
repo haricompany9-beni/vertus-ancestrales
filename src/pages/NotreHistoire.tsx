@@ -19,7 +19,7 @@ export const NotreHistoire: React.FC<NotreHistoireProps> = ({ setPage }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-[#FAF8F3] min-h-screen text-[#3B2F2F] font-sans w-full overflow-x-hidden"
+      className="bg-[#FAF8F3] min-h-screen text-[#3B2F2F] font-sans w-full"
     >
       {/* ========================================================
           1. HERO SECTION - L'héritage ancestral

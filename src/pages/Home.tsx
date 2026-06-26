@@ -261,7 +261,7 @@ export const Home: React.FC<HomeProps> = ({
   };
 
   return (
-    <div className="bg-[#FAF8F3]/40 min-h-screen text-[#3B2F2F] overflow-x-hidden animate-fade-in">
+    <div className="bg-[#FAF8F3]/40 min-h-screen text-[#3B2F2F] animate-fade-in">
       {/* 1. HERO SECTION */}
       <section 
         ref={heroSectionRef}

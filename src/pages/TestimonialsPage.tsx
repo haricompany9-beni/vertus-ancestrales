@@ -144,7 +144,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({
   ];
 
   return (
-    <div className="bg-[#F7F3EE] min-h-screen text-[#3B2F2F] pb-16 sm:pb-24 overflow-x-hidden">
+    <div className="bg-[#F7F3EE] min-h-screen text-[#3B2F2F] pb-16 sm:pb-24">
       
       {/* Dynamic Marquee CSS Styles inserted directly for smooth hardware performance */}
       <style>{`
