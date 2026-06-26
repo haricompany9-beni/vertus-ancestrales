@@ -32,7 +32,8 @@ import { DashboardAdmin } from './components/DashboardAdmin';
 // Mock Data & Types
 import { 
   Product, BlogArticle, Testimonial, Consultation, 
-  ConsultationBooking, Order, ContactMessage, User, CartItem, AdviceDocument 
+  ConsultationBooking, Order, ContactMessage, User, CartItem, AdviceDocument,
+  ProductReview 
 } from './types';
 import { 
   mockProducts, mockArticles, mockTestimonials, 
@@ -57,6 +58,9 @@ export default function App() {
 
   // User session state
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  // Product Reviews State
+  const [productReviews, setProductReviews] = useState<ProductReview[]>([]);
 
   // Shopping Cart States
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -244,7 +248,13 @@ export default function App() {
       setCart(JSON.parse(storedCart));
     }
 
-    // 10. Advice Documents
+    // 10. Product Reviews
+    const storedReviews = localStorage.getItem('va_product_reviews');
+    if (storedReviews) {
+      setProductReviews(JSON.parse(storedReviews));
+    }
+
+    // 11. Advice Documents
     const storedAdviceDocs = localStorage.getItem('va_advice_docs');
     if (storedAdviceDocs) {
       setAdviceDocs(JSON.parse(storedAdviceDocs));
@@ -342,6 +352,12 @@ export default function App() {
   const handleRemoveFromCart = (id: string) => {
     const updated = cart.filter(item => item.id !== id);
     updateStoredCart(updated);
+  };
+
+  const handleAddProductReview = (review: ProductReview) => {
+    const updated = [review, ...productReviews];
+    setProductReviews(updated);
+    localStorage.setItem('va_product_reviews', JSON.stringify(updated));
   };
 
   const handleBookConsultation = (newBooking: ConsultationBooking) => {
@@ -480,6 +496,8 @@ export default function App() {
             product={currentPageParams.product} 
             setPage={handlePageRouting} 
             onAddToCart={handleAddToCart}
+            reviews={productReviews.filter(r => r.productId === currentPageParams.product.id)}
+            onAddReview={handleAddProductReview}
           />
         )}
 

@@ -839,7 +839,13 @@ export const Home: React.FC<HomeProps> = ({
         className="bg-[#F8F5F0] pb-24 flex justify-center border-b border-[#E8DFC9]/30 relative z-10"
       >
         <button 
-          onClick={() => setPage('testimonials_page')}
+          onClick={() => {
+            const el = document.getElementById('paroles-sacrees-testimonials');
+            if (el) {
+              const y = el.getBoundingClientRect().top + window.scrollY - 80;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          }}
           className="group relative bg-[#FAF8F3] hover:bg-[#1F3B2F] border border-[#1F3B2F]/80 hover:border-[#1F3B2F] text-[#1F3B2F] hover:text-white text-[11px] tracking-[0.18em] uppercase font-bold px-9 py-4.5 rounded-[4px] shadow-sm hover:shadow-lg transition-all duration-300 flex items-center gap-3.5 cursor-pointer"
         >
           <span>VOIR PLUS DE TÉMOIGNAGES</span>

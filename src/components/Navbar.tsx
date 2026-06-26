@@ -53,8 +53,30 @@ export const Navbar: React.FC<NavbarProps> = ({
     { label: 'Notre Histoire', id: 'history' },
     { label: 'Monique', id: 'monique' },
     { label: 'Blog', id: 'blog' },
-    { label: 'Témoignages', id: 'testimonials_page' }
+    { label: 'Témoignages', id: 'testimonials' }
   ];
+
+  const scrollToTestimonials = () => {
+    const el = document.getElementById('paroles-sacrees-testimonials');
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const handleNavClick = (id: string) => {
+    if (id === 'testimonials') {
+      if (currentPage === 'home') {
+        scrollToTestimonials();
+      } else {
+        setPage('home');
+        setTimeout(scrollToTestimonials, 400);
+      }
+      setIsOpen(false);
+      return;
+    }
+    setPage(id);
+  };
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -98,11 +120,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Navigation Desktop Center */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 order-3">
           {navItems.map((item) => {
-            const isActive = currentPage === item.id || (item.id === 'blog' && currentPage === 'blog_details');
+            const isActive = currentPage === item.id || (item.id === 'blog' && currentPage === 'blog_details') || (item.id === 'testimonials' && currentPage === 'home');
             return (
               <button
                 key={item.id}
-                onClick={() => setPage(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className={`text-xs tracking-[0.18em] uppercase font-sans relative py-2 transition-all duration-300 cursor-pointer ${
                   isActive 
                     ? 'text-[#C8A96B] font-bold' 
@@ -222,14 +244,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="lg:hidden bg-[#FAF8F3] border-t border-[#E8DFC9]/40 py-6 px-6 absolute top-full left-0 w-full shadow-lg flex flex-col gap-5 animate-fade-in z-50">
           <div className="flex flex-col gap-4">
             {navItems.map((item) => {
-              const isActive = currentPage === item.id;
+              const isActive = currentPage === item.id || (item.id === 'testimonials' && currentPage === 'home');
               return (
                 <button
                   key={item.id}
-                  onClick={() => {
-                    setPage(item.id);
-                    setIsOpen(false);
-                  }}
+                  onClick={() => handleNavClick(item.id)}
                   className={`text-left py-2 font-serif text-lg tracking-wide border-b border-[#E8DFC9]/20 flex items-center justify-between ${
                     isActive ? 'text-[#1F3B2F] font-bold pl-2' : 'text-[#6B7280]'
                   }`}

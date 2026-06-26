@@ -116,7 +116,22 @@ export const Footer: React.FC<FooterProps> = ({ setPage, onQuickLogin }) => {
             <li><button onClick={() => setPage('history')} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left">Notre Histoire</button></li>
             <li><button onClick={() => setPage('monique')} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left">Rencontrez Monique</button></li>
             <li><button onClick={() => setPage('blog')} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left">Le Blog Alchimique</button></li>
-            <li><button onClick={() => setPage('testimonials_page')} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left">Témoignages</button></li>
+            <li><button onClick={() => {
+  const el = document.getElementById('paroles-sacrees-testimonials');
+  if (el) {
+    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  } else {
+    setPage('home');
+    setTimeout(() => {
+      const el = document.getElementById('paroles-sacrees-testimonials');
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 400);
+  }
+}} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left">Témoignages</button></li>
             <li className="pt-1.5 border-t border-[#FAF8F3]/10"><button onClick={() => onQuickLogin ? onQuickLogin('client') : setPage('dashboard_client')} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left font-semibold text-[#C8A96B]">Espace Client</button></li>
             <li><button onClick={() => onQuickLogin ? onQuickLogin('admin') : setPage('dashboard_admin')} className="hover:text-[#C8A96B] transition-colors cursor-pointer text-left font-semibold text-[#E8DFC9]">Espace Administrateur</button></li>
           </ul>

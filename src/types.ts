@@ -120,6 +120,15 @@ export interface ContactMessage {
   status: 'Non lu' | 'Lu' | 'Répondu';
 }
 
+export interface ProductReview {
+  id: string;
+  productId: string;
+  name: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
+
 export interface AdviceDocument {
   id: string;
   userId: string;

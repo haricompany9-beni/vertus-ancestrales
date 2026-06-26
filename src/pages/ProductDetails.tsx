@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Star, ArrowLeft, Plus, Minus, ShoppingBag, Compass, X, Maximize2 } from 'lucide-react';
+import { Star, ArrowLeft, Plus, Minus, ShoppingBag, Compass, X, Maximize2, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Product } from '../types';
+import { Product, ProductReview } from '../types';
 import { getVariantPrice } from '../utils/productHelpers';
 
 interface ProductDetailsProps {
   product: Product;
   setPage: (page: string) => void;
   onAddToCart: (product: Product, e: React.MouseEvent, quantity: number, variant?: string) => void;
+  reviews: ProductReview[];
+  onAddReview: (review: ProductReview) => void;
 }
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ 
   product, 
   setPage, 
-  onAddToCart 
+  onAddToCart,
+  reviews,
+  onAddReview
 }) => {
   const variantsList = (product.variants && product.variants.length > 0)
     ? product.variants
@@ -24,6 +28,32 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   const [activeTab, setActiveTab] = useState<'desc' | 'ingredients' | 'usage'>('desc');
   const [activeImage, setActiveImage] = useState<string>(product.image);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
+  // Review form state
+  const [reviewName, setReviewName] = useState('');
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewComment, setReviewComment] = useState('');
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
+
+  const handleSubmitReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!reviewName.trim() || !reviewComment.trim()) return;
+    const newReview: ProductReview = {
+      id: `review-${Date.now()}`,
+      productId: product.id,
+      name: reviewName.trim(),
+      rating: reviewRating,
+      comment: reviewComment.trim(),
+      date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+    };
+    onAddReview(newReview);
+    setReviewName('');
+    setReviewRating(5);
+    setReviewComment('');
+    setReviewSubmitted(true);
+    setTimeout(() => setReviewSubmitted(false), 3000);
+  };
 
   // Synchronize dynamic updates if the active product switches
   useEffect(() => {
@@ -286,6 +316,162 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
           </div>
         </div>
       </div>
+
+      {/* REVIEWS SECTION */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 mt-16">
+        <div className="border-t border-[#E8DFC9]/30 pt-10">
+          <h2 className="font-serif text-2xl text-[#1F3B2F] font-medium mb-8">
+            Avis des initiés <span className="text-[#C8A96B]">•</span> <span className="text-base text-[#6B7280] font-sans">({reviews.length} avis)</span>
+          </h2>
+
+          <div className="flex flex-col items-center gap-8">
+            {/* Existing Reviews List */}
+            <div className="w-full max-w-3xl flex flex-col gap-5">
+              {reviews.length === 0 ? (
+                <p className="text-sm text-[#6B7280] font-sans italic text-center">Aucun avis pour le moment. Soyez le premier à partager votre expérience.</p>
+              ) : (
+                reviews.map((r) => (
+                  <div key={r.id} className="bg-white border border-[#E8DFC9]/30 rounded-xl p-5 shadow-xs">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-[#1F3B2F] text-white flex items-center justify-center font-bold text-xs font-sans">
+                          {r.name.charAt(0).toUpperCase()}
+                        </div>
+                        <span className="font-sans font-semibold text-sm text-[#1F3B2F]">{r.name}</span>
+                      </div>
+                      <span className="text-[10px] text-[#6B7280] font-sans">{r.date}</span>
+                    </div>
+                    <div className="flex items-center gap-0.5 text-[#C8A96B] mb-2">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} size={12} className={i < r.rating ? 'fill-current' : 'opacity-25'} />
+                      ))}
+                    </div>
+                    <p className="text-xs text-[#3B2F2F] font-sans leading-relaxed">{r.comment}</p>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Centered button to open review modal */}
+            <button
+              onClick={() => setShowReviewModal(true)}
+              className="bg-[#1F3B2F] hover:bg-[#556B2F] text-white text-xs tracking-widest uppercase font-semibold py-3.5 px-8 rounded-lg flex items-center gap-2 transition-all cursor-pointer shadow-md"
+            >
+              <Star size={14} />
+              <span>Laissez un avis sur ce produit</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* REVIEW MODAL */}
+      <AnimatePresence>
+        {showReviewModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowReviewModal(false)}
+            className="fixed inset-0 z-50 bg-[#1F3B2F]/60 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden border border-[#C8A96B]/20"
+            >
+              <div className="bg-[#1F3B2F] p-5 text-[#FAF8F3] flex justify-between items-center shrink-0">
+                <h3 className="font-serif text-lg font-medium">Partagez votre expérience</h3>
+                <button
+                  onClick={() => setShowReviewModal(false)}
+                  className="text-[#FAF8F3] hover:text-[#C8A96B] font-bold text-sm cursor-pointer"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="p-6 overflow-y-auto flex-1">
+                {reviewSubmitted ? (
+                  <div className="bg-[#1F7A4D]/10 border border-[#1F7A4D]/20 rounded-lg p-6 text-center">
+                    <p className="text-sm font-semibold text-[#1F7A4D]">Merci pour votre avis !</p>
+                    <p className="text-xs text-[#6B7280] mt-1">Votre témoignage a été publié avec succès.</p>
+                    <button
+                      onClick={() => setShowReviewModal(false)}
+                      className="mt-4 bg-[#1F3B2F] hover:bg-[#556B2F] text-white text-xs tracking-widest uppercase font-semibold py-2.5 px-6 rounded transition-all cursor-pointer"
+                    >
+                      Fermer
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmitReview} className="flex flex-col gap-4 font-sans text-xs">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="font-semibold text-gray-700">Votre nom</label>
+                      <input
+                        type="text"
+                        className="border border-[#E8DFC9] px-3 py-2.5 rounded bg-white focus:outline-none focus:border-[#C8A96B]"
+                        placeholder="Monique, Élise..."
+                        value={reviewName}
+                        onChange={(e) => setReviewName(e.target.value)}
+                        required
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      <label className="font-semibold text-gray-700">Votre note</label>
+                      <div className="flex items-center gap-1">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <button
+                            key={i}
+                            type="button"
+                            onClick={() => setReviewRating(i + 1)}
+                            className="cursor-pointer p-0.5"
+                          >
+                            <Star
+                              size={24}
+                              className={i < reviewRating ? 'fill-[#C8A96B] text-[#C8A96B]' : 'text-[#E8DFC9]'}
+                            />
+                          </button>
+                        ))}
+                        <span className="text-xs text-[#6B7280] font-sans ml-2">{reviewRating}/5</span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      <label className="font-semibold text-gray-700">Votre commentaire</label>
+                      <textarea
+                        className="border border-[#E8DFC9] px-3 py-2.5 rounded bg-white focus:outline-none focus:border-[#C8A96B] h-28 resize-none"
+                        placeholder="Racontez votre expérience avec ce produit..."
+                        value={reviewComment}
+                        onChange={(e) => setReviewComment(e.target.value)}
+                        required
+                      />
+                    </div>
+
+                    <div className="pt-2 flex justify-end gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setShowReviewModal(false)}
+                        className="border border-gray-300 hover:bg-gray-50 text-gray-600 px-5 py-2.5 rounded transition-all"
+                      >
+                        Annuler
+                      </button>
+                      <button
+                        type="submit"
+                        className="bg-[#1F3B2F] hover:bg-[#556B2F] text-white font-semibold px-6 py-2.5 rounded transition-all flex items-center gap-2"
+                      >
+                        <Send size={13} />
+                        <span>Publier mon avis</span>
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* LUXURY LIGHTBOX MODAL COVERS THE PAGE ON TRUE */}
       <AnimatePresence>
